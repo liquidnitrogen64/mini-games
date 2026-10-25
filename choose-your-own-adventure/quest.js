@@ -87,7 +87,7 @@ const storyData = {
     },
 
     noble_story: {
-        text: "How utterly british of you! (affectionately.) But soon enough, you recieve your first royal invitation, from the Assam Kingdom. Do you accept or decline?",
+        text: "How utterly British of you! (affectionately.) But soon enough, you recieve your first royal invitation, from the Assam Kingdom. Do you accept or decline?",
         choices: [
             {text: "Decline", target: "decline_invite"},
             {text: "Accept", target: "assam_arrive"}
@@ -137,7 +137,7 @@ const storyData = {
     },
 
     assam_dungeon: {
-        text: "Darjee frowns. \"What a shame. There are plenty who would have killed to be in your position. But no matter. You will see reason eventually. Until then, you shall simply stay within the dungeon.\" Before you have the chance to protest (or maybe not, if you're into this), the same honor guard that escorted you here grabs you and deposits you in a dank, stone cell. The bars are rusting, and the window is just a hole carved in the wall. The view's pretty nice, though. Looking out, you can see a slightly gritty, but largely well-maintained city. Despite the generally good conditions, you can hear an odd silence that hangs around the city. People are afraid of something. You, however, have more pressing issues. How are you gonna get out of this cell?",
+        text: "Darjee frowns, \"What a shame. There are plenty who would have killed to be in your position. But no matter. You will see reason eventually. Until then, you shall simply stay within the dungeon.\" Before you have the chance to protest (or maybe not, if you're into this), the same honor guard that escorted you here grabs you and deposits you in a dank, stone cell. The bars are rusting, and the window is just a hole carved in the wall. The view's pretty nice, though. Looking out, you can see a slightly gritty, but largely well-maintained city. Despite the generally good conditions, you can hear an odd silence that hangs around the city. People are afraid of something. You, however, have more pressing issues. How are you gonna get out of this cell?",
         choices: [
             {text: "Whatever, they'll let me out evetually", target: "cell_wait_1"},
             {text: "Oooh, I've always wanted to do an escape sequence!", target: "escape_cell"}
@@ -168,22 +168,22 @@ const storyData = {
     cell_wait_last: {
         text: "How many times are you going to do this? Are you sure you don't want to escape? Your chances are dwindling.",
         choices: [
-            {text: "Fine, I'll escape", target: "escape_sequence"},
+            {text: "Fine, I'll escape", target: "escape_cell"},
             {text: "Nope, I love prison!", target: "offer_last"}
         ]
     },
 
     offer_last: {
-        text: "Eventually, Darjee returns. \"You are testing my patience. Never has there been one of common blood who has dared deny me so. You WILL see reason, or you will die.\" The guards begin to advance towards you, their blades gleaming with light from the window.",
+        text: "Eventually, Darjee returns. \n\"You are testing my patience. Never has there been one of common blood who has dared deny me so. You WILL see reason, or you will die.\" The guards begin to advance towards you, their blades gleaming with light from the window.",
         choices: [
-            {text: "Nothing like the treat of death to make you reconsider!", target: "accept_last"},
+            {text: "Nothing like the threat of death to make you reconsider!", target: "accept_last"},
             {text: "Guess I'll die!", target: "cell_death"},
             {text: "Oh no! I need to escape!", target: "escape_last"}
         ]
     },
 
     accept_last: {
-        text: "Darjee smiles. \"Excellent. I knew you weould see reason eventually. I will have the guards take you to your new residence within my palace. I will summon you and explain in detail the responsibilites of your position as soon as I have a spare moment. But you must excuse me.\" The young boy begins to walk away, his neat cape trailing behind him, contrasting sharply with the dirty floor of your former cell. The guards that... \"escorted\" you here march you out of prison and take you to a beautiful room, decorated with brightly dyed silks. Almost everything lined with gold. The window lights up the room with a soft glow. When you look out, you can see the whole city. Beautiful spires and onion domes, marble white and topped with gold, stretch into the sky. People dressed in colorful, fashionable clothes walk in the street or take carriages, making small talk, gossiping, and laughing politely. How do you want to spend your time?",
+        text: "Darjee smiles. \"Excellent. I knew you would see reason eventually. I will have the guards take you to your new residence within my palace. I will summon you and explain in detail the responsibilites of your position as soon as I have a spare moment. But you must excuse me.\" The young boy begins to walk away, his neat cape trailing behind him, contrasting sharply with the dirty floor of your former cell. The guards that... \"escorted\" you here march you out of prison and take you to a beautiful room, decorated with brightly dyed silks. Almost everything lined with gold. The window lights up the room with a soft glow. When you look out, you can see the whole city. Beautiful spires and onion domes, marble white and topped with gold, stretch into the sky. People dressed in colorful, fashionable clothes walk in the street or take carriages, making small talk, gossiping, and laughing politely. How do you want to spend your time?",
         choices: [
             {text: "Just like take a nap or something", target: "darjee_summons"},
             {text: "Explore!", target: "explore_locked"}
@@ -200,3 +200,25 @@ const storyData = {
         choices: []
     }
 }
+
+//html reference
+const storyTextElement = document.getElementById("story-text");
+const choiceButtonsElement = document.getElementById("choice-buttons");
+
+//display scene based on id
+function showScene(sceneId) {
+    const scene = storyData[sceneId];
+    storyTextElement.innerText = scene.text;
+    choiceButtonsElement.innerHTML = "";
+
+    scene.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.innerText = choice.text;
+
+        button.onclick = () => showScene(choice.target);
+
+        choiceButtonsElement.appendChild(button);
+    });
+}
+
+showScene("start");
