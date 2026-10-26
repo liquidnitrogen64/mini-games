@@ -13,4 +13,6 @@ The Kanton Federation: A group of allied small countries and city-states. This a
         Kilner City: Supplies most of the funds and supplies for the war effort.
         Rooibos Polis: Organized the legal documents of the Kanton Federation, sends delegates and diplomats in attempt to resolve the conflict
         The State of Shennong: Militaristic state that deals with most of the manpower and war strategy
+# How to Play
+Click on whichever option presented you want to see play out in the story! The game's response will show up, and you will (usually) be presented with new choices.
 <img width="1919" height="1199" alt="image" src="https://github.com/user-attachments/assets/31031063-1726-4555-a200-13948c5988e9" />
