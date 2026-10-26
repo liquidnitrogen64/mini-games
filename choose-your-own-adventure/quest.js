@@ -229,6 +229,7 @@ const storyData = {
 //html reference
 const storyTextElement = document.getElementById("story-text");
 const choiceButtonsElement = document.getElementById("choice-buttons");
+const storyContainer = document.getElementById("story-container");
 
 //display scene based on id
 function showScene(sceneId) {
